@@ -8,14 +8,19 @@ import pygame
 import os
 
 pygame.display.set_caption("JetBear! The Game!")
+
+# load assets
 BG_IMAGE = pygame.image.load(os.path.join('assets/images', 'background_wide.png'))
 SPLASH = pygame.image.load(os.path.join('assets/images', 'Splash.png'))
 START = pygame.image.load(os.path.join('assets/images', 'start.png'))
+BEAR_IMAGE = pygame.image.load(os.path.join('assets/images', 'bear.png'))
+
+# constants
 WIDTH = BG_IMAGE.get_width()
 HEIGHT = BG_IMAGE.get_height()
-WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 
-BEAR_IMAGE = pygame.image.load(os.path.join('assets/images', 'bear.png'))
+# set display call
+WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 
 
 def splash():
@@ -36,23 +41,8 @@ def splash():
 
 
 def draw_window():  # function to draw on window
-    WIN.fill((0, 0, 0))
     WIN.blit(BG_IMAGE, (0, 0))  # load background image
     WIN.blit(BEAR_IMAGE, (WIDTH // 4, HEIGHT // 2))  # should be sprite
-
-
-def main():
-
-    run = True
-    while run:  # loop to run window until user quits
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                run = False
-
-        pygame.display.update()
-        splash()
-
-    pygame.quit()
 
 
 if __name__ == '__main__':
