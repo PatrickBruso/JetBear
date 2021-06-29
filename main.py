@@ -4,45 +4,45 @@ v0.1
 Copyright 2021 Bocifious Development
 """
 
-import pygame
+import pygame as pg
 import os
 
-pygame.display.set_caption("JetBear! The Game!")
+pg.display.set_caption("JetBear! The Game!")
 
 # load assets
-BG_IMAGE = pygame.image.load(os.path.join('assets/images', 'background_wide.png'))
-SPLASH = pygame.image.load(os.path.join('assets/images', 'Splash.png'))
-START = pygame.image.load(os.path.join('assets/images', 'start.png'))
-BEAR_IMAGE = pygame.image.load(os.path.join('assets/images', 'bear.png'))
+bg_image = pg.image.load(os.path.join('assets/images', 'background_wide.png'))
+splash_image = pg.image.load(os.path.join('assets/images', 'Splash.png'))
+start = pg.image.load(os.path.join('assets/images', 'start.png'))
+bear_image = pg.image.load(os.path.join('assets/images', 'bear.png'))
 
 # constants
-WIDTH = BG_IMAGE.get_width()
-HEIGHT = BG_IMAGE.get_height()
+width = bg_image.get_width()
+height = bg_image.get_height()
 
 # set display call
-WIN = pygame.display.set_mode((WIDTH, HEIGHT))
+win = pg.display.set_mode((width, height))
 
 
 def splash():
-    WIN.blit(SPLASH, (0, 0))
-    button = WIN.blit(START, (WIDTH / 2.60, HEIGHT / 1.75))
+    win.blit(splash_image, (0, 0))
+    button = win.blit(start, (width / 2.60, height / 1.75))
 
     run = True
     while run:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
                 run = False
-            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                pos = pygame.mouse.get_pos()
+            if event.type == pg.MOUSEBUTTONDOWN and event.button == 1:
+                pos = pg.mouse.get_pos()
                 if button.collidepoint(pos):
                     draw_window()
-        pygame.display.update()
-    pygame.quit()
+        pg.display.update()
+    pg.quit()
 
 
 def draw_window():  # function to draw on window
-    WIN.blit(BG_IMAGE, (0, 0))  # load background image
-    WIN.blit(BEAR_IMAGE, (WIDTH // 4, HEIGHT // 2))  # should be sprite
+    win.blit(bg_image, (0, 0))  # load background image
+    win.blit(bear_image, (width // 4, height // 2))  # should be sprite
 
 
 if __name__ == '__main__':
