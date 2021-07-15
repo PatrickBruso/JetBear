@@ -18,17 +18,23 @@ bear_image = pg.image.load(os.path.join('assets/images', 'bear.png'))
 # constants
 width = bg_image.get_width()
 height = bg_image.get_height()
+FPS = 60
 
 # set display call
 win = pg.display.set_mode((width, height))
 
 
 def splash():
+    """
+    Main game loop that implements splash screen and calls game function upon button click
+    """
     win.blit(splash_image, (0, 0))
     button = win.blit(start, (width / 2.60, height / 1.75))
+    clock = pg.time.Clock()
 
     run = True
     while run:
+        clock.tick(FPS)
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 run = False

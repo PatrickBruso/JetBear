@@ -2,7 +2,7 @@
 
 ## Coding JetBear with Pygame!
 
-I coded a crappy javascript game a long time ago.  The [game](http://www.bocifious.com/jetbear.html) isn't great but was the best I could do with vanilla JS at the time. Now that I've been working with Python I want to finally implement it using Pygame.
+I coded a javascript game a long time ago.  The game isn't great but was the best I could do with vanilla JS at the time. Now that I've been working with Python I want to finally implement it using Pygame.
 
 My idea is to create a 2D background scrolling game where you control a bear to go up and down in order to catch salmon and avoid beehives. I also want to add a splash screen and a game over/high score screen.  This basic implementation is to test my skills and knowledge of Python/Pygame, at which point I will hopefully add more features.
 
