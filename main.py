@@ -1,7 +1,7 @@
 """
 JetBear! The Game!
 v0.1
-Copyright 2021 Bocifious Development
+Copyright 2021 Patrick Bruso
 """
 
 import pygame as pg
