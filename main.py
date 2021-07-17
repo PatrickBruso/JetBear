@@ -24,6 +24,28 @@ FPS = 60
 win = pg.display.set_mode((width, height))
 
 
+class Bear(object):
+    def __init__(self):
+        self.image = bear_image
+        self.x = width / 4
+        self.y = height / 2
+
+    def key_handle(self):
+        key = pg.key.get_pressed()
+        dist = 1  # change if movement too slow
+        if key[pg.KEYDOWN]:
+            self.y += dist
+        elif key[pg.KEYUP]:
+            self.y -= dist
+        elif key[pg.K_RIGHT]:
+            self.x += dist
+        elif key[pg.K_LEFT]:
+            self.x -= dist
+
+    def draw(self, surface):
+        surface.blit(self.image, (self.x, self.y))
+
+
 def splash():
     """
     Main game loop that implements splash screen and calls game function upon button click
@@ -48,7 +70,8 @@ def splash():
 
 def draw_window():  # function to draw on window
     win.blit(bg_image, (0, 0))  # load background image
-    win.blit(bear_image, (width // 4, height // 2))  # should be sprite
+    # win.blit(bear_image, (width // 4, height // 2))  # should be sprite
+    bear = Bear()  # how to update inside this function with the splash screen?
 
 
 if __name__ == '__main__':
