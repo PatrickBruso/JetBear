@@ -72,11 +72,5 @@ def main():
     pg.quit()
 
 
-def draw_window():  # function to draw on window
-    win.blit(bg_image, (0, 0))  # load background image
-    # win.blit(bear_image, (width // 4, height // 2))  # should be sprite
-    bear = Bear()  # how to update inside this function with the splash screen?
-
-
 if __name__ == '__main__':
     main()
