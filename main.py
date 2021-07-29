@@ -46,7 +46,7 @@ class Bear(object):
         surface.blit(self.image, (self.x, self.y))
 
 
-def splash():
+def main():
     """
     Main game loop that implements splash screen and calls game function upon button click
     """
@@ -62,8 +62,9 @@ def splash():
                 run = False
             if event.type == pg.MOUSEBUTTONDOWN and event.button == 1:
                 pos = pg.mouse.get_pos()
-                if button.collidepoint(pos):
-                    draw_window()
+                if button.collidepoint(pos):  # add draw_window function here instead to avoid issues with update?
+                    win.blit(bg_image, (0, 0))
+                    win.blit(bear_image, (width // 4, height // 2))
         pg.display.update()
     pg.quit()
 
@@ -75,4 +76,4 @@ def draw_window():  # function to draw on window
 
 
 if __name__ == '__main__':
-    splash()
+    main()
