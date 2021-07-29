@@ -33,9 +33,9 @@ class Bear(object):
     def key_handle(self):
         key = pg.key.get_pressed()
         dist = 1  # change if movement too slow
-        if key[pg.KEYDOWN]:
+        if key[pg.K_DOWN]:
             self.y += dist
-        elif key[pg.KEYUP]:
+        elif key[pg.K_UP]:
             self.y -= dist
         elif key[pg.K_RIGHT]:
             self.x += dist
@@ -53,6 +53,7 @@ def main():
     win.blit(splash_image, (0, 0))
     button = win.blit(start, (width / 2.60, height / 1.75))
     clock = pg.time.Clock()
+    bear = Bear()
 
     run = True
     while run:
@@ -64,7 +65,9 @@ def main():
                 pos = pg.mouse.get_pos()
                 if button.collidepoint(pos):  # add draw_window function here instead to avoid issues with update?
                     win.blit(bg_image, (0, 0))
-                    win.blit(bear_image, (width // 4, height // 2))
+
+        bear.key_handle()
+        bear.draw(win)
         pg.display.update()
     pg.quit()
 
