@@ -39,6 +39,18 @@ class Bear(object):
         self.x = width / 4
         self.y = height / 2
 
+    def checkBorder(self):
+        # logic to not increase distance if hit ground or border
+        if self.x < 0:
+            self.x = 0
+        elif self.x > 900:
+            self.x = 900
+
+        if self.y < 0:
+            self.y = 0
+        elif self.y > 300:
+            self.y = 300
+
     def key_handle(self):
         key = pg.key.get_pressed()
         dist = 4  # change if movement too slow
@@ -51,8 +63,8 @@ class Bear(object):
         elif key[pg.K_LEFT]:
             self.x -= dist
 
-        # add logic to not increase distance if hit ground or border 
-        # (This should probably be another function called checkBorders)
+        self.checkBorder()
+         
 
     def draw(self, surface):
         surface.blit(self.image, (self.x, self.y))
