@@ -24,6 +24,12 @@ FPS = 60
 win = pg.display.set_mode((width, height))
 
 
+# Thoughts: How about adding a move() function
+# With only one movement key (Spacebar)
+# if KeyPressed is Spacebar Move Up
+# else move down?
+# This is similar to a game called Jetpack Joyride
+
 class Bear(object):
     def __init__(self):
         self.image = bear_image
@@ -42,6 +48,9 @@ class Bear(object):
         elif key[pg.K_LEFT]:
             self.x -= dist
 
+        # add logic to not increase distance if hit ground or border 
+        # (This should probably be another function called checkBorders)
+
     def draw(self, surface):
         surface.blit(self.image, (self.x, self.y))
 
@@ -55,20 +64,31 @@ def main():
     clock = pg.time.Clock()
     bear = Bear()
 
-    run = True
-    while run:
+    isRunning = True
+    isStartPressed = False
+    while isRunning:
         clock.tick(FPS)
+
         for event in pg.event.get():
             if event.type == pg.QUIT:
-                run = False
+                isRunning = False
+
+            #This checks if startbutton is pressed
             if event.type == pg.MOUSEBUTTONDOWN and event.button == 1:
                 pos = pg.mouse.get_pos()
-                if button.collidepoint(pos):  # add draw_window function here instead to avoid issues with update?
-                    win.blit(bg_image, (0, 0))
+                if button.collidepoint(pos):  
+                    isStartPressed = True;
 
-        bear.key_handle()
-        bear.draw(win)
+        if isStartPressed == True:
+            win.blit(bg_image, (0, 0))
+            bear.key_handle()
+            bear.draw(win)
+        else:
+            #insert splash screen animation logic
+        
         pg.display.update()
+
+
     pg.quit()
 
 
