@@ -41,7 +41,7 @@ class Bear(object):
 
     def key_handle(self):
         key = pg.key.get_pressed()
-        dist = 1  # change if movement too slow
+        dist = 4  # change if movement too slow
         if key[pg.K_DOWN]:
             self.y += dist
         elif key[pg.K_UP]:
@@ -81,6 +81,30 @@ class Base:
         win.blit(self.IMG, (self.x1, self.y))
         win.blit(self.IMG, (self.x2, self.y))
 
+class Background_Top:
+    VEL = 1
+    WIDTH = bg_image.get_width()
+    IMG = bg_image
+
+    def __init__(self):
+        self.y = 0
+        self.x1 = 0
+        self.x2 = self.WIDTH
+
+    def move(self):
+        self.x1 -= self.VEL
+        self.x2 -= self.VEL
+
+        if(self.x1 + self.WIDTH < 0):
+            self.x1 = self.x2 + self.WIDTH
+
+        if(self.x2 + self.WIDTH < 0):
+            self.x2 = self.x1 + self.WIDTH
+
+    def draw(self, win):
+        win.blit(self.IMG, (self.x1, self.y))
+        win.blit(self.IMG, (self.x2, self.y))
+
 def main():
     """
     Main game loop that implements splash screen and calls game function upon button click
@@ -89,7 +113,8 @@ def main():
     button = win.blit(start, (width / 2.60, height / 1.75))
     clock = pg.time.Clock()
     bear = Bear()
-    base = Base();
+    base = Base()
+    bgtop = Background_Top();
 
     isRunning = True
     isStartPressed = False
@@ -108,10 +133,12 @@ def main():
 
         if isStartPressed == True:
             win.blit(bg_image, (0, 0))
-            bear.key_handle()
-            bear.draw(win)
+            bgtop.move()
+            bgtop.draw(win)
             base.move()
             base.draw(win)
+            bear.key_handle()
+            bear.draw(win)
         #else:
             #insert splash screen animation logic
         
