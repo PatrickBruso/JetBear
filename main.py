@@ -10,11 +10,13 @@ import os
 pg.display.set_caption("JetBear! The Game!")
 
 # load assets
-bg_image = pg.image.load(os.path.join('assets/images', 'background_wide.png'))
+bg_image = pg.image.load(os.path.join('assets/images', 'bgtop.png'))
 splash_image = pg.image.load(os.path.join('assets/images', 'Splash.png'))
 start = pg.image.load(os.path.join('assets/images', 'start.png'))
 bear_image = pg.image.load(os.path.join('assets/images', 'bear.png'))
+base_image = pg.image.load(os.path.join('assets/images', 'bgbottom.png'))
 
+#TODO: Make these ALLCAPS. Also make the image assets ALLCAPS?
 # constants
 width = bg_image.get_width()
 height = bg_image.get_height()
@@ -29,7 +31,8 @@ win = pg.display.set_mode((width, height))
 # if KeyPressed is Spacebar Move Up
 # else move down?
 # This is similar to a game called Jetpack Joyride
-
+# Going up would be slow, coming down would be fast
+# The challenge would be to calculate the timings
 class Bear(object):
     def __init__(self):
         self.image = bear_image
@@ -54,6 +57,29 @@ class Bear(object):
     def draw(self, surface):
         surface.blit(self.image, (self.x, self.y))
 
+class Base:
+    VEL = 5
+    WIDTH = base_image.get_width()
+    IMG = base_image
+
+    def __init__(self):
+        self.y = 0
+        self.x1 = 0
+        self.x2 = self.WIDTH
+
+    def move(self):
+        self.x1 -= self.VEL
+        self.x2 -= self.VEL
+
+        if(self.x1 + self.WIDTH < 0):
+            self.x1 = self.x2 + self.WIDTH
+
+        if(self.x2 + self.WIDTH < 0):
+            self.x2 = self.x1 + self.WIDTH
+
+    def draw(self, win):
+        win.blit(self.IMG, (self.x1, self.y))
+        win.blit(self.IMG, (self.x2, self.y))
 
 def main():
     """
@@ -63,6 +89,7 @@ def main():
     button = win.blit(start, (width / 2.60, height / 1.75))
     clock = pg.time.Clock()
     bear = Bear()
+    base = Base();
 
     isRunning = True
     isStartPressed = False
@@ -83,7 +110,9 @@ def main():
             win.blit(bg_image, (0, 0))
             bear.key_handle()
             bear.draw(win)
-        else:
+            base.move()
+            base.draw(win)
+        #else:
             #insert splash screen animation logic
         
         pg.display.update()
