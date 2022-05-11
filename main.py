@@ -32,7 +32,7 @@ class Bear(object):
 
     def key_handle(self):
         key = pg.key.get_pressed()
-        dist = 2  # change if movement too slow
+        dist = 4  # change if movement too slow
         if key[pg.K_DOWN]:
             self.y += dist
         elif key[pg.K_UP]:
