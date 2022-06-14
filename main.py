@@ -48,6 +48,24 @@ class Bear(object):
         pg.display.update()  # testing update within Bear class
 
 
+class Base:
+    VEL = 0.5 # Base velocity movement
+    WIDTH = 
+    IMG = 
+
+    def __init__(self) -> None:
+        self.y = 0
+        self.x1 = 0
+        self.x2 = self.WIDTH
+        self.vel = 0
+    
+    def move(self, vel = VEL):
+        self.x1 -= vel
+        self.x2 -= vel
+
+        
+
+
 def main():
     """
     Main game loop that implements splash screen and calls game function upon button click
