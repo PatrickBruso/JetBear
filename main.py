@@ -51,17 +51,57 @@ class Bear(object):
 
 
 class Foreground:
-    VEL = 0.5 # Base velocity movement
+    """
+    A class used to draw and move the game's foreground.
+
+    ...
+
+    Attributes
+    ----------
+    y : int
+        The y-axis value of the foreground image
+    x1 : int
+        The beginning x-axis value of the foreground image
+    x2 : int
+        The ending x-axis value of the foreground image
+    vel : int
+        The velocity of the foreground image moving right to left
+    
+    Methods
+    --------
+    move(vel=VEL)
+        Moves the foreground image from right side to left side for parallax effect
+    
+    draf(win)
+        Draws the foreground image on the game canvas
+    """
+
+    # Class constants
+    VEL = 0.5 # Foreground velocity movement
     WIDTH = FOREGROUND_IMAGE.get_width()
     IMG = FOREGROUND_IMAGE
 
     def __init__(self) -> None:
+        """
+        There are no parameters because the values do not change and are hard-coded below
+        """
+
         self.y = 0
         self.x1 = 0
         self.x2 = self.WIDTH
         self.vel = 0
     
     def move(self, vel = VEL):
+        """
+        Moves the foreground image on the game canvas from right to left,
+        giving the canvas a parallax effect.
+
+        Parameters
+        -----------
+        vel: int, optional
+            The value of the foreground movement velocity
+        """
+
         self.x1 -= vel
         self.x2 -= vel
 
@@ -72,6 +112,15 @@ class Foreground:
             self.x2 = self.x1 + self.WIDTH
     
     def draw(self, win):
+        """
+        Draws the foreground on to the game canvas.
+
+        Parameters
+        ----------
+        win : Any
+            pygame window display call 
+        """
+        
         win.blit(self.IMG, (self.x1, self.y))
         win.blit(self.IMG, (self.x2, self.y))
 
