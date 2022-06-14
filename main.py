@@ -27,7 +27,7 @@ pg.display.set_caption("JetBear! The Game!")
 win = pg.display.set_mode((WIDTH, HEIGHT))
 
 
-class Bear(object):
+class Bear:
     def __init__(self):
         self.image = BEAR_IMAGE
         self.x = WIDTH / 4
