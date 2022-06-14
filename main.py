@@ -7,21 +7,23 @@ Copyright 2021 Patrick Bruso
 import pygame as pg
 import os
 
-# load assets
-BG_IMAGE = pg.image.load(os.path.join('assets/images', 'background_wide.png'))
+# Load and name assets
+BACKGROUND_IMAGE = pg.image.load(os.path.join('assets/images', 'bgtop.png'))
 SPLASH_IMAGE = pg.image.load(os.path.join('assets/images', 'Splash.png'))
-START = pg.image.load(os.path.join('assets/images', 'START.png'))
-BEAR_IMAGE = pg.image.load(os.path.join('assets/images', 'bear.png'))
+START_BUTTON = pg.image.load(os.path.join('assets/images', 'start.png'))
+BEAR_JETPACK_ON = pg.image.load(os.path.join('assets/images', 'bear.png'))
+BEAR_JETPACK_OFF = pg.image.load(os.path.join('assets/images', 'idle.png'))
+FOREGROUND_IMAGE = pg.image.load(os.path.join('assets/images', 'bgbottom.png'))
 
-# constants
-WIDTH = BG_IMAGE.get_width()
-HEIGHT = BG_IMAGE.get_height()
+# Constants
+WIDTH = BACKGROUND_IMAGE.get_width()
+HEIGHT = BACKGROUND_IMAGE.get_height()
 FPS = 60
 
 # Set game window caption
 pg.display.set_caption("JetBear! The Game!")
 
-# set display call
+# Set display call
 win = pg.display.set_mode((WIDTH, HEIGHT))
 
 
@@ -63,7 +65,7 @@ class Base:
         self.x1 -= vel
         self.x2 -= vel
 
-        
+
 
 
 def main():
@@ -71,7 +73,8 @@ def main():
     Main game loop that implements splash screen and calls game function upon button click
     """
     win.blit(SPLASH_IMAGE, (0, 0))
-    button = win.blit(START, (WIDTH / 2.60, HEIGHT / 1.75))
+    # Move below
+    button = win.blit(START_BUTTON, (WIDTH / 2.60, HEIGHT / 1.75))
     clock = pg.time.Clock()
     bear = Bear()
 
@@ -84,7 +87,7 @@ def main():
             if event.type == pg.MOUSEBUTTONDOWN and event.button == 1:
                 pos = pg.mouse.get_pos()
                 if button.collidepoint(pos):
-                    win.blit(BG_IMAGE, (0, 0))
+                    win.blit(BACKGROUND_IMAGE, (0, 0))
 
         bear.draw(win)
         bear.key_handle()
