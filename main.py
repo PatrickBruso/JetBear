@@ -1,6 +1,6 @@
 """
 JetBear! The Game!
-v0.1
+v1.0
 Copyright 2021 Patrick Bruso
 """
 
