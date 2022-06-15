@@ -16,6 +16,10 @@ BEAR_JETPACK_ON = pg.image.load(os.path.join('assets/images', 'bear.png'))
 BEAR_JETPACK_OFF = pg.image.load(os.path.join('assets/images', 'idle.png'))
 FOREGROUND_IMAGE = pg.image.load(os.path.join('assets/images', 'bgbottom.png'))
 
+# Prepare music assets for loading in main function
+SPLASH_MUSIC = os.path.join('assets/audio', 'intro.mp3')
+GAME_MUSIC = os.path.join('assets/audio', 'game.mp3')
+
 # Constants
 WIDTH = BACKGROUND_IMAGE.get_width()
 HEIGHT = BACKGROUND_IMAGE.get_height()
