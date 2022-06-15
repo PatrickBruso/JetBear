@@ -233,25 +233,34 @@ def main():
     """
     Main game loop that implements splash screen and calls game function upon button click
     """
-    win.blit(SPLASH_IMAGE, (0, 0))
+    win.blit(SPLASH_IMAGE, (0, 0)) # Move to splash logic section to have moving background?
+
     # Initialize, load, and play splash screen music (fix needed - stop when start button pressed)
     mixer.init()
     mixer.music.load(SPLASH_MUSIC)
     mixer.music.play()
-    # Move below?
-    button = win.blit(START_BUTTON, (WIDTH / 2.60, HEIGHT / 1.75))
+
+    button = win.blit(START_BUTTON, (WIDTH / 2.60, HEIGHT / 1.75)) # Move to splash logic section for moving background?
+
+    # Start clock
     clock = pg.time.Clock()
+
+    # Load class instances
     bear = Bear()
     foreground = Foreground()
     background = Background()
 
+    # Set variables for game run and start button pressed
     run = True
     start_pressed = False
 
+    # Main game loop
     while run:
-        clock.tick(FPS)
+        clock.tick(FPS) # Change to see effect?
 
+        # Event handler
         for event in pg.event.get():
+            # Quit event
             if event.type == pg.QUIT:
                 run = False
             
@@ -261,12 +270,13 @@ def main():
                 if button.collidepoint(pos):
                     start_pressed = True
             
-            # Jetpack logic (move to Bear class)
+            # Jetpack logic (move to Bear class?)
             elif event.type == pg.KEYDOWN and event.key == pg.K_SPACE:
                 bear.start_jetpack()
             elif event.type == pg.KEYUP and event.key == pg.K_SPACE:
                 bear.start_gravity()
 
+        # Logic for main game when start button pressed
         if start_pressed == True:
             win.blit(BACKGROUND_IMAGE, (0, 0))
             background.move()
@@ -276,14 +286,15 @@ def main():
             bear.move()
             bear.key_handle()
             bear.draw(win)
-            mixer.music.load(GAME_MUSIC)
-            mixer.music.play()
+            mixer.music.load(GAME_MUSIC) # Not working
+            mixer.music.play() # Not working
 
+        # Logic for Splash screen
         else:
-            # Insert splash logic
             foreground.move()
             foreground.draw(win)
 
+        # Display update to refresh screen
         pg.display.update()
 
     pg.quit()
