@@ -242,6 +242,9 @@ def main():
 
     while run:
         clock.tick(FPS)
+        mixer.init()
+        mixer.music.load((os.path.join('assets/audio', 'intro.mp3')))
+        mixer.music.play()
 
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -270,9 +273,6 @@ def main():
             bear.draw(win)
         else:
             # Insert splash logic
-            mixer.init()
-            mixer.music.load((os.path.join('assets/audio', 'intro.mp3')))
-            mixer.music.play()
             foreground.move()
             foreground.draw(win)
 
