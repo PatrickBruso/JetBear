@@ -230,6 +230,10 @@ def main():
     Main game loop that implements splash screen and calls game function upon button click
     """
     win.blit(SPLASH_IMAGE, (0, 0))
+    # Initialize, load, and play splash screen music (fix needed - stop when start button pressed)
+    mixer.init()
+    mixer.music.load((os.path.join('assets/audio', 'intro.mp3')))
+    mixer.music.play()
     # Move below?
     button = win.blit(START_BUTTON, (WIDTH / 2.60, HEIGHT / 1.75))
     clock = pg.time.Clock()
@@ -242,9 +246,6 @@ def main():
 
     while run:
         clock.tick(FPS)
-        mixer.init()
-        mixer.music.load((os.path.join('assets/audio', 'intro.mp3')))
-        mixer.music.play()
 
         for event in pg.event.get():
             if event.type == pg.QUIT:
