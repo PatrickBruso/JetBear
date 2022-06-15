@@ -4,6 +4,7 @@ v1.0
 Copyright 2021 Patrick Bruso
 """
 
+from turtle import width
 import pygame as pg
 import os
 
@@ -33,7 +34,19 @@ class Bear:
         self.x = WIDTH / 4
         self.y = HEIGHT / 2
         self.y_change = 0
-        self.startGravity()
+        self.start_gravity()
+    
+    def check_border(self):
+        # Logic to prevent bear from moving outside game window
+        if self.x < 0:
+            self.x = 0
+        elif self.x > WIDTH:
+            self.x = WIDTH
+        
+        if self.y < 0:
+            self.y = 0
+        elif self.y > HEIGHT:
+            self.y = HEIGHT
 
     def key_handle(self):
         key = pg.key.get_pressed()
@@ -46,10 +59,23 @@ class Bear:
             self.x += dist
         elif key[pg.K_LEFT]:
             self.x -= dist
+        
+        self.check_border()
+    
+    def move(self):
+        self.y += self.y_change
+        self.check_border()
+    
+    def start_jetpack(self):
+        self.image = BEAR_JETPACK_ON
+        self.y_change = -6
+    
+    def start_gravity(self):
+        self.image = BEAR_JETPACK_OFF
+        self.y_change = 8
 
     def draw(self, surface):
         surface.blit(self.image, (self.x, self.y))
-        pg.display.update()  # testing update within Bear class
 
 
 class Foreground:
