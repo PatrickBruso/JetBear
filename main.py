@@ -4,8 +4,8 @@ v1.0
 Copyright 2021 Patrick Bruso
 """
 
-from turtle import width
 import pygame as pg
+from pygame import mixer
 import os
 
 # Load and name assets
@@ -270,6 +270,9 @@ def main():
             bear.draw(win)
         else:
             # Insert splash logic
+            mixer.init()
+            mixer.music.load((os.path.join('assets/audio', 'intro.mp3')))
+            mixer.music.play()
             foreground.move()
             foreground.draw(win)
 
