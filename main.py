@@ -238,18 +238,41 @@ def main():
     background = Background()
 
     run = True
+    start_pressed = False
+
     while run:
         clock.tick(FPS)
+
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 run = False
+            
+            # Check if start button pressed and set to True if pressed
             if event.type == pg.MOUSEBUTTONDOWN and event.button == 1:
                 pos = pg.mouse.get_pos()
                 if button.collidepoint(pos):
-                    win.blit(BACKGROUND_IMAGE, (0, 0))
+                    start_pressed = True
+            
+            # Jetpack logic (move to Bear class)
+            elif event.type == pg.KEYDOWN and event.key == pg.K_SPACE:
+                bear.start_jetpack
+            elif event.type == pg.KEYUP and event.key == pg.K_SPACE:
+                bear.start_gravity
 
-        bear.draw(win)
-        bear.key_handle()
+        if start_pressed == True:
+            win.blit(BACKGROUND_IMAGE, (0, 0))
+            background.move()
+            background.draw(win)
+            foreground.move()
+            foreground.draw(win)
+            bear.move()
+            bear.key_handle()
+            bear.draw(win)
+        else:
+            # Insert splash logic
+            foreground.move()
+            foreground.draw(win)
+
         pg.display.update()
 
     pg.quit()
