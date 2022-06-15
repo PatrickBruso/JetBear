@@ -9,17 +9,17 @@ My idea is to create a 2D background scrolling game where you control a bear to 
 The goal for now is to implement the following:
 
 * [x] Create Splash Screen
-    * [ ] Create Splash Screen Music
-    * [ ] Create Moving Bear on Splash Screen
+    * [x] Create Splash Screen Music
+    * [x] Create Moving Background on Splash Screen
 * [x] Load Game on Click
     * [x] Create Start Button
 * [x] Implement Game Scene after Start Click
 * [ ] Game Mechanics
-    * [ ] Implement Character Sprite for Jetpack On/Off
-        * [ ] Jetpack Turns on with Space Click
+    * [x] Implement Character Sprite for Jetpack On/Off
+        * [x] Jetpack Turns on with Space Click
         * [ ] Jetpack Movement Physics
     * [ ] Score Graphic
-    * [ ] Side-Scrolling Background
+    * [x] Side-Scrolling Background
     * [ ] Potential Enemies
     * [ ] High Score Table
 * [ ] Game Music
