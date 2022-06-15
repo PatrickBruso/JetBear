@@ -230,10 +230,12 @@ def main():
     Main game loop that implements splash screen and calls game function upon button click
     """
     win.blit(SPLASH_IMAGE, (0, 0))
-    # Move below
+    # Move below?
     button = win.blit(START_BUTTON, (WIDTH / 2.60, HEIGHT / 1.75))
     clock = pg.time.Clock()
     bear = Bear()
+    foreground = Foreground()
+    background = Background()
 
     run = True
     while run:
