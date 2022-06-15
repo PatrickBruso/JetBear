@@ -236,7 +236,7 @@ def main():
     win.blit(SPLASH_IMAGE, (0, 0))
     # Initialize, load, and play splash screen music (fix needed - stop when start button pressed)
     mixer.init()
-    mixer.music.load((os.path.join('assets/audio', 'intro.mp3')))
+    mixer.music.load(SPLASH_MUSIC)
     mixer.music.play()
     # Move below?
     button = win.blit(START_BUTTON, (WIDTH / 2.60, HEIGHT / 1.75))
@@ -276,6 +276,7 @@ def main():
             bear.move()
             bear.key_handle()
             bear.draw(win)
+
         else:
             # Insert splash logic
             foreground.move()
