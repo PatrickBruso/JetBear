@@ -255,9 +255,9 @@ def main():
             
             # Jetpack logic (move to Bear class)
             elif event.type == pg.KEYDOWN and event.key == pg.K_SPACE:
-                bear.start_jetpack
+                bear.start_jetpack()
             elif event.type == pg.KEYUP and event.key == pg.K_SPACE:
-                bear.start_gravity
+                bear.start_gravity()
 
         if start_pressed == True:
             win.blit(BACKGROUND_IMAGE, (0, 0))
