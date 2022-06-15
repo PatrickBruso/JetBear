@@ -276,6 +276,8 @@ def main():
             bear.move()
             bear.key_handle()
             bear.draw(win)
+            mixer.music.load(GAME_MUSIC)
+            mixer.music.play()
 
         else:
             # Insert splash logic
