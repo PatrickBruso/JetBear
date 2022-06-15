@@ -40,13 +40,13 @@ class Bear:
         # Logic to prevent bear from moving outside game window
         if self.x < 0:
             self.x = 0
-        elif self.x > WIDTH:
-            self.x = WIDTH
+        elif self.x > 900:
+            self.x = 900
         
         if self.y < 0:
             self.y = 0
-        elif self.y > HEIGHT:
-            self.y = HEIGHT
+        elif self.y > 300:
+            self.y = 300
 
     def key_handle(self):
         key = pg.key.get_pressed()
