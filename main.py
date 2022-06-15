@@ -29,9 +29,11 @@ win = pg.display.set_mode((WIDTH, HEIGHT))
 
 class Bear:
     def __init__(self):
-        self.image = BEAR_IMAGE
+        self.image = BEAR_JETPACK_ON
         self.x = WIDTH / 4
         self.y = HEIGHT / 2
+        self.y_change = 0
+        self.startGravity()
 
     def key_handle(self):
         key = pg.key.get_pressed()
